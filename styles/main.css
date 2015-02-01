@@ -1,0 +1,141 @@
+/* CSS Document */
+.battleground {
+	background-image: url('../media/sand.jpg');
+}
+
+.logo {
+	right:0px;
+	position:absolute;
+}
+
+.controller {
+	right:0px;
+	bottom:0px;
+	position:fixed;
+}
+.tank_top {
+	background-image:url(../media/tank-turret.png);
+	width: 64px;
+	height:64px;
+}
+.tank_laser {
+	background-color: #F00;
+	left: 32px;
+	bottom: 60px;
+	position:fixed;
+	width: 4px;
+	height: 0px;
+	transition: all 0.5s;
+	opacity: 0.0;
+}
+
+.tank_laser_fire {
+	width:33px;
+	height:68px;
+	/*bottom:60px;
+	position:fixed;*/
+	top:0px;
+	margin-top:-45px;
+	margin-left:-14px;
+	background-image: url(../media/fire.gif);
+	border-radius:5px;
+}
+
+.ui-footer {
+	position: absolute;
+	bottom: 0px;
+	height: 20px;
+	width: 100%;
+	opacity: 0.8;
+}
+
+.ui-header {
+	opacity: 0.8;
+}
+
+.tank_base {
+	position:relative;
+	top: 0px;
+	left: 0px;
+	z-index:99;
+}
+
+.tank_top {
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	transform: rotate(0deg);
+	z-index:100;
+	transition: all 1s;
+}
+
+.tank {
+	position: absolute;
+	width:64px;
+	height:64px;
+	left:100px;
+	top:100px;
+	transition: all 1s;	
+}
+
+.inner_tank {
+	position: absolute;
+	transition: all 1s;	
+}
+.grid_table {
+	border:none;
+}
+.grid_cell {
+	width:64px;
+	min-width:64px;
+	height:64px;
+	border-style:dashed;
+	border-width:1;
+	border-color:#000;
+	font-size:x-small;
+	text-align: center;
+}
+
+.grid_cell:hover {
+	background-color: rgba(200,255,200,0.3);
+	border-radius: 5px;
+	opacity:1.0;
+}
+
+.tank_spacer {
+	height:64px;
+}
+
+.tank_stats {
+	background-color: rgba(255,255,255,0.3);
+	font-size:smaller;
+}
+.tank_color {
+	width:64px;
+	text-align: center;
+	background-color: rgba(255,0,0,0.5);
+	border-radius:5px;
+}
+
+.popup {
+	background-image:url('../media/steel.png');
+	padding:20px;
+}
+
+.popup_contents {
+	background-color:rgba(255,255,255,0.5);
+	border-radius:5px;
+	padding:10px;
+}
+
+#tankDetails {
+	max-width: 200px;
+}
+
+#tankInfo-popup {
+	opacity: 0.8;
+}
+
+.tank_command {
+	width:10px;
+}

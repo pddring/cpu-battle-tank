@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CPU BattleTanks</title>
+<link rel="stylesheet" type="text/css" href="lib/jqmobile/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+<script src="lib/jqmobile/jquery-1.11.2.min.js"></script>
+<script src="lib/jqmobile/jquery.mobile-1.4.5.min.js"></script>
+<script src="lib/battletanks.js"></script>
+</head>
+
+<body>
+
+<div data-role="page">
+	
+
+	<div data-role="header"><h1>Battle Tanks</h1>
+    <a href="#settings" data-icon="gear">Settings</a>
+    </div>
+    
+	<div role="main" class="ui-content battleground">
+	    <img src="media/logo small.png" class="logo"/>
+        <img src="media/controller.png" class="controller" />
+    	<div data-role="popup" id="tankInfo" data-transition="flip" class="popup">
+			<h1>Tank Details</h1>
+            <div id="tankDetails" class="popup_contents">Hello this should show tank details</div>
+			<a class="popup_button" href="#" data-role="button" data-rel="back"><img src="media/tick.png"/></a>
+		</div>
+        
+        
+    	<div id="grid"></div>
+    	<div id="tanks"></div>
+    </div>
+    <div data-role="panel" id="settings">
+    	<h1>Settings</h1>
+        <label for="show-name"><a href="#pop_show_name" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank names:</label>
+        <select name="show-name" class="ctl_setting" id="setting_tank_show_name" data-role="slider" data-mini="true">	
+            <option value="hide">Hide</option>
+            <option value="show">Show</option>
+        </select>
+        <div data-role="popup" id="pop_show_name">Show or hide the name of each tank on the battle grid</div>
+        
+        <label for="show-name"><a href="#pop_show_fuel" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Fuel details:</label>
+        <select name="show-fuel" class="ctl_setting" id="setting_tank_show_fuel" data-role="slider" data-mini="true">
+            <option value="hide">Hide</option>
+            <option value="show">Show</option>
+        </select>
+        <div data-role="popup" id="pop_show_fuel">Show or hide the amount of fuel underneath each tank on the battle grid</div>
+        
+        <label for="show-name"><a href="#pop_show_ammo" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Ammo details:</label>
+        <select name="show-ammo" class="ctl_setting" id="setting_tank_show_ammo" data-role="slider" data-mini="true">
+            <option value="hide">Hide</option>
+            <option value="show">Show</option>
+        </select>
+        <div data-role="popup" id="pop_show_ammo">Show or hide the ammount of ammo remaining under each tank on the battle grid</div>
+        
+        <label for="show-commands"><a href="#pop_show_commands" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank command stack:</label>
+        <select name="show-commands" class="ctl_setting" id="setting_tank_show_commands" data-role="slider" data-mini="true">
+            <option value="hide">Hide</option>
+            <option value="show">Show</option>
+        </select>
+        <div data-role="popup" id="pop_show_commands">Show or hide the list of all commands for each tank</div>
+    </div>
+	<div data-role="footer"><span id="status_bar"></span></div>
+</div>
+
+<script> 
+var bt = new BattleTank();
+var t1,t2;
+
+var onControllerClick = function(e) {
+	function inBox(x, y, left, top, width, height) {
+		return((x > left) && (x < left + width) && (y > top) && (y < top + height))? true: false;
+	}
+	var x = e.offsetX;
+	var y = e.offsetY;
+
+	// move tank
+	if(inBox(x, y, 70, 17, 64, 64))  
+		t1.addCommand(t1.CMD_MOVE_FORWARDS);
+	if(inBox(x, y, 70, 112, 64, 64))  
+		t1.addCommand(t1.CMD_MOVE_BACKWARDS);
+	if(inBox(x, y, 120, 64, 64, 64))  
+		t1.addCommand(t1.CMD_TURN_CLOCKWISE);
+	if(inBox(x, y, 20, 64, 64, 64))  
+		t1.addCommand(t1.CMD_TURN_ANTICLOCKWISE);
+		
+	// aim tank
+	if(inBox(x, y, 233, 37, 64, 64))  
+		t1.addCommand(t1.CMD_AIM_ANTICLOCKWISE);
+	if(inBox(x, y, 310, 37, 64, 64))  
+		t1.addCommand(t1.CMD_AIM_CLOCKWISE);
+	if(inBox(x, y, 274, 86, 64, 64))
+		t1.addCommand(t1.CMD_FIRE);
+	
+}
+
+var onTankClick = function(e) {
+	var id = e.currentTarget.id;
+	
+	var t = bt.getTankById(id);
+	var html = t.getDetails();
+	bt.grid.updateCallback = function() {
+		var html = t.getDetails();
+		$('#tankDetails').html(html);
+	}
+	bt.grid.updateCallback();
+	
+	$('#tankInfo').popup('open');
+}
+
+var onSettingChange = function(e) {
+	// show or hide tank details
+	$('.tank_color').css({display:(bt.settings.showTankNames?'block':'none')});
+	$('.tank_fuel').css({display:(bt.settings.showFuelDetails?'block':'none')});
+	$('.tank_ammo').css({display:(bt.settings.showAmmoDetails?'block':'none')});
+	$('.tank_commands').css({display:(bt.settings.showCommandStack?'block':'none')});
+}
+
+
+$(function(){
+	
+	bt.grid.init();
+	t1 = bt.addTank("You", 1,1, 'rgba(0,255,0, 0.8)');
+	t2 = bt.addTank("Enemy", 3,1, 'rgba(255,0,0, 0.8)');
+	
+	$(".tank").click(onTankClick);
+	
+	$(".controller").click(onControllerClick);
+	
+	// set default settings values
+	$('#setting_tank_show_name').val(bt.settings.showTankNames?"show":"hide");
+	$('#setting_tank_show_fuel').val(bt.settings.showFuelDetails?"show":"hide");
+	$('#setting_tank_show_ammo').val(bt.settings.showAmmoDetails?"show":"hide");
+	$('#setting_tank_show_commands').val(bt.settings.showCommandStack?"show":"hide");
+	$('.ctl_setting').slider('refresh');
+	onSettingChange();
+	
+	// add settings change callback
+	$('.ctl_setting').on("change", function(event, ui) {
+		var id = event.target.id;
+		var val=$("#" + id).val() == "show"?true:false;
+		switch(id) {
+			case 'setting_tank_show_name': 
+				bt.settings.showTankNames = val;
+				break;
+			case 'setting_tank_show_fuel':
+				bt.settings.showFuelDetails = val;
+				break;
+			case 'setting_tank_show_ammo':
+				bt.settings.showAmmoDetails = val;
+				break;
+			case 'setting_tank_show_commands':
+				bt.settings.showCommandStack = val;
+				break;
+		}
+		onSettingChange(id);
+	});
+});
+</script>
+</body>
+
+</html>

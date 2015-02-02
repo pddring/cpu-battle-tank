@@ -8,6 +8,11 @@
 	position:absolute;
 }
 
+.explosion {
+	z-index:200;
+	position:relative;
+}
+
 .controller {
 	right:0px;
 	bottom:0px;

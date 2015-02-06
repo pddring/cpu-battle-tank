@@ -16,6 +16,7 @@
 	
 	<div data-role="header"><h1>Battle Tanks</h1>
     <a href="#settings" data-icon="gear">Settings</a>
+    <a href="#objectives" data-icon="check">Objectives</a>
     </div>
     
 	<div role="main" class="ui-content battleground">
@@ -31,6 +32,13 @@
     	<div id="grid"></div>
     	<div id="tanks"></div>
     </div>
+    
+    
+    <div data-role="panel" id="objectives" data-display="overlay" data-position="right">
+    <h1>Objectives</h1>
+    Hello
+    </div>
+    
     <div data-role="panel" id="settings">
     	<h1>Settings</h1>
         <label for="show-name"><a href="#pop_show_name" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank names:</label>
@@ -54,7 +62,7 @@
         </select>
         <div data-role="popup" id="pop_show_ammo">Show or hide the ammount of ammo remaining under each tank on the battle grid</div>
         
-        <label for="show-commands"><a href="#pop_show_commands" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank command stack:</label>
+        <label for="show-commands"><a href="#pop_show_commands" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank command queue:</label>
         <select name="show-commands" class="ctl_setting" id="setting_tank_show_commands" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
@@ -118,11 +126,18 @@ var onSettingChange = function(e) {
 }
 
 
+
 $(function(){
 	
 	bt.grid.init();
 	t1 = bt.addTank("You", 1,1, 'rgba(0,255,0, 0.8)');
 	t2 = bt.addTank("Enemy", 3,1, 'rgba(255,0,0, 0.8)');
+	
+	
+	var l1 = bt.addLevel("Level 1", "Destroy the enemy tanks", 
+		[[0, 0, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
+		[5, 5, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY]]);
+	bt.grid.loadLevel(l1);
 	
 	$(".tank").click(onTankClick);
 	
@@ -161,3 +176,4 @@ $(function(){
 </body>
 
 </html>
+

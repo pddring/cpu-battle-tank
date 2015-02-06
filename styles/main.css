@@ -9,14 +9,17 @@
 }
 
 .explosion {
-	z-index:200;
-	position:relative;
+	z-index:400;
+	position:absolute;
+	left:0px;
+	top:0px;
 }
 
 .controller {
 	right:0px;
 	bottom:0px;
 	position:fixed;
+	z-index:300;
 }
 .tank_top {
 	background-image:url(../media/tank-turret.png);
@@ -74,6 +77,12 @@
 	transition: all 1s;
 }
 
+.item {
+	position: relative;
+	width:64px;
+	height:64px;
+}
+
 .tank {
 	position: absolute;
 	width:64px;
@@ -99,6 +108,7 @@
 	border-color:#000;
 	font-size:x-small;
 	text-align: center;
+	position:relative;
 }
 
 .grid_cell:hover {
@@ -143,4 +153,12 @@
 
 .tank_command {
 	width:10px;
+}
+
+.list_tick {
+	list-style-image:url(../media/tick.png);
+}
+
+.list_cross {
+	list-style-image:url(../media/cross.png);
 }

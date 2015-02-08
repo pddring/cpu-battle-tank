@@ -122,7 +122,7 @@ var onSettingChange = function(e) {
 	$('.tank_color').css({display:(bt.settings.showTankNames?'block':'none')});
 	$('.tank_fuel').css({display:(bt.settings.showFuelDetails?'block':'none')});
 	$('.tank_ammo').css({display:(bt.settings.showAmmoDetails?'block':'none')});
-	$('.tank_commands').css({display:(bt.settings.showCommandStack?'block':'none')});
+	$('.tank_commands').css({display:(bt.settings.showCommandQueue?'block':'none')});
 }
 
 
@@ -131,12 +131,16 @@ $(function(){
 	
 	bt.grid.init();
 	t1 = bt.addTank("You", 1,1, 'rgba(0,255,0, 0.8)');
-	t2 = bt.addTank("Enemy", 3,1, 'rgba(255,0,0, 0.8)');
 	
 	
-	var l1 = bt.addLevel("Level 1", "Destroy the enemy tanks", 
-		[[0, 0, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
-		[5, 5, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY]]);
+	var l1 = bt.addLevel({title: "Level 1", description:"Follow the checkpoints and destroy the tank", 
+		tasks:[
+		[0, 0, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
+		[5, 5, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY],
+		[5, 4, bt.ITEM_TYPE_TANK, bt.ACTION_DESTROY, {name:"German", color:"rgba(255,0,0,0,0.8)", commands:""}],
+		[0, 4, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
+		[3, 4, bt.ITEM_TYPE_FUEL, bt.ACTION_COLLECT]
+		]});
 	bt.grid.loadLevel(l1);
 	
 	$(".tank").click(onTankClick);
@@ -147,7 +151,7 @@ $(function(){
 	$('#setting_tank_show_name').val(bt.settings.showTankNames?"show":"hide");
 	$('#setting_tank_show_fuel').val(bt.settings.showFuelDetails?"show":"hide");
 	$('#setting_tank_show_ammo').val(bt.settings.showAmmoDetails?"show":"hide");
-	$('#setting_tank_show_commands').val(bt.settings.showCommandStack?"show":"hide");
+	$('#setting_tank_show_commands').val(bt.settings.showCommandQueue?"show":"hide");
 	$('.ctl_setting').slider('refresh');
 	onSettingChange();
 	
@@ -166,7 +170,7 @@ $(function(){
 				bt.settings.showAmmoDetails = val;
 				break;
 			case 'setting_tank_show_commands':
-				bt.settings.showCommandStack = val;
+				bt.settings.showCommandQueue = val;
 				break;
 		}
 		onSettingChange(id);

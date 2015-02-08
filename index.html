@@ -17,6 +17,7 @@
 	<div data-role="header"><h1>Battle Tanks</h1>
     <a href="#settings" data-icon="gear">Settings</a>
     <a href="#objectives" data-icon="check">Objectives</a>
+    <span id="status_bar"></span>
     </div>
     
 	<div role="main" class="ui-content battleground">
@@ -36,7 +37,6 @@
     
     <div data-role="panel" id="objectives" data-display="overlay" data-position="right">
     <h1>Objectives</h1>
-    Hello
     </div>
     
     <div data-role="panel" id="settings">
@@ -69,12 +69,11 @@
         </select>
         <div data-role="popup" id="pop_show_commands">Show or hide the list of all commands for each tank</div>
     </div>
-	<div data-role="footer"><span id="status_bar"></span></div>
+	<div data-role="footer"></div>
 </div>
 
 <script> 
 var bt = new BattleTank();
-var t1,t2;
 
 var onControllerClick = function(e) {
 	function inBox(x, y, left, top, width, height) {
@@ -82,7 +81,7 @@ var onControllerClick = function(e) {
 	}
 	var x = e.offsetX;
 	var y = e.offsetY;
-
+	var t1 = bt.currentTank;
 	// move tank
 	if(inBox(x, y, 70, 17, 64, 64))  
 		t1.addCommand(t1.CMD_MOVE_FORWARDS);
@@ -130,10 +129,10 @@ var onSettingChange = function(e) {
 $(function(){
 	
 	bt.grid.init();
-	t1 = bt.addTank("You", 1,1, 'rgba(0,255,0, 0.8)');
+	//t1 = bt.addTank("You", 1,1, 'rgba(0,255,0, 0.8)');
 	
 	
-	var l1 = bt.addLevel({title: "Level 1", description:"Follow the checkpoints and destroy the tank", 
+	var l1 = bt.addLevel({tank: {x:1, y:1, name: "You", color:"rgba(0, 255,0,0.8)"}, title: "Level 1", description:"Follow the checkpoints and destroy the tank", 
 		tasks:[
 		[0, 0, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
 		[5, 5, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY],

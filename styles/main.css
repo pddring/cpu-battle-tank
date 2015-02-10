@@ -162,3 +162,21 @@
 .list_cross {
 	list-style-image:url(../media/cross.png);
 }
+.progress_holder {
+	width:100%;
+	height:5px;
+	background-color:#F00;
+	display:block;
+}
+.progress_bar {
+	width:50%;
+	height:5px;
+	background-color:#0C0;
+	display:block;
+	transition: all 1.0s;
+}
+
+.item_description {
+	width: 32px;
+	height: 32px;
+}

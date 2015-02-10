@@ -22,14 +22,7 @@
     
 	<div role="main" class="ui-content battleground">
 	    <img src="media/logo small.png" class="logo"/>
-        <img src="media/controller.png" class="controller" />
-    	<div data-role="popup" id="tankInfo" data-transition="flip" class="popup">
-			<h1>Tank Details</h1>
-            <div id="tankDetails" class="popup_contents">Hello this should show tank details</div>
-			<a class="popup_button" href="#" data-role="button" data-rel="back"><img src="media/tick.png"/></a>
-		</div>
-        
-        
+        <img src="media/controller.png" class="controller" />                
     	<div id="grid"></div>
     	<div id="tanks"></div>
     </div>
@@ -102,20 +95,6 @@ var onControllerClick = function(e) {
 	
 }
 
-var onTankClick = function(e) {
-	var id = e.currentTarget.id;
-	
-	var t = bt.getTankById(id);
-	var html = t.getDetails();
-	bt.grid.updateCallback = function() {
-		var html = t.getDetails();
-		$('#tankDetails').html(html);
-	}
-	bt.grid.updateCallback();
-	
-	$('#tankInfo').popup('open');
-}
-
 var onSettingChange = function(e) {
 	// show or hide tank details
 	$('.tank_color').css({display:(bt.settings.showTankNames?'block':'none')});
@@ -142,7 +121,6 @@ $(function(){
 		]});
 	bt.grid.loadLevel(l1);
 	
-	$(".tank").click(onTankClick);
 	
 	$(".controller").click(onControllerClick);
 	

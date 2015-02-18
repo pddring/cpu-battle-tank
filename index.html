@@ -8,6 +8,8 @@
 <script src="lib/jqmobile/jquery-1.11.2.min.js"></script>
 <script src="lib/jqmobile/jquery.mobile-1.4.5.min.js"></script>
 <script src="lib/battletanks.js"></script>
+<script src="lib/ace/ace.js"></script>
+<script src="lib/ace/mode-lmc.js"></script>
 </head>
 
 <body>
@@ -39,37 +41,37 @@
             <option value="hide">Hide</option>
             <option value="show">Show</option>
         </select>
-        <div data-role="popup" id="pop_show_name">Show or hide the name of each tank on the battle grid</div>
+        <div data-role="popup" data-history="false" id="pop_show_name">Show or hide the name of each tank on the battle grid</div>
         
         <label for="show-name"><a href="#pop_show_fuel" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Fuel details:</label>
         <select name="show-fuel" class="ctl_setting" id="setting_tank_show_fuel" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
         </select>
-        <div data-role="popup" id="pop_show_fuel">Show or hide the amount of fuel underneath each tank on the battle grid</div>
+        <div data-role="popup" data-history="false" id="pop_show_fuel">Show or hide the amount of fuel underneath each tank on the battle grid</div>
         
         <label for="show-name"><a href="#pop_show_ammo" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Ammo details:</label>
         <select name="show-ammo" class="ctl_setting" id="setting_tank_show_ammo" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
         </select>
-        <div data-role="popup" id="pop_show_ammo">Show or hide the ammount of ammo remaining under each tank on the battle grid</div>
+        <div data-role="popup" data-history="false" id="pop_show_ammo">Show or hide the ammount of ammo remaining under each tank on the battle grid</div>
         
         <label for="show-commands"><a href="#pop_show_commands" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank command queue:</label>
         <select name="show-commands" class="ctl_setting" id="setting_tank_show_commands" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
         </select>
-        <div data-role="popup" id="pop_show_commands">Show or hide the list of all commands for each tank</div>
+        <div data-role="popup" data-history="false" id="pop_show_commands">Show or hide the list of all commands for each tank</div>
         
         <label for="show-grid"><a href="#pop_show_grid" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Grid lines:</label>
         <select name="show-grid" class="ctl_setting" id="setting_grid_show_borders" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
         </select>
-        <div data-role="popup" id="pop_show_grid">Show or hide the grid lines</div>
+        <div data-role="popup" data-history="false" id="pop_show_grid">Show or hide the grid lines</div>
     </div>
-    <div id="dlg" data-role="popup" data-transition="flip"></div>
+    <div id="dlg" data-role="popup" data-history="false" data-transition="fade"></div>
 	<div data-role="footer"></div>
 </div>
 

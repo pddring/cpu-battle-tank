@@ -188,7 +188,65 @@
 	margin:-12px;
 }
 
-#ram {
-	max-height:200px;
-	overflow:scroll;
+
+#ram_contents {
+	display:inline-block;
+	width: 100px;
+	height: 400px;
+	top:0px;
+	position:relative;
+	overflow-y:scroll;
+	background-color:#FF9;
+}
+
+#ram_editor {
+	width: 400px;
+	height: 400px;
+}
+
+#ram_editor_holder {
+	display:inline-block;
+	position:relative;
+}
+.memory_location {
+	border-style:solid;
+	border-color:#000;
+	border-width:medium;
+}
+
+.memory_address {
+	color:#666;
+	font-family:"Courier New", Courier, monospace;
+	font-size:small;
+}
+
+.memory_value {
+	color:#00F;
+	font-family:"Courier New", Courier, monospace;
+	background-color:#FFF;
+	border-radius:5px;
+	margin:5px;
+}
+
+#code_status {
+	position: absolute;
+	bottom: 100px;
+	right: 10px;	
+	z-index: 100;
+	margin: 10px;
+	background-color: rgba(200,255,200,0.7);
+	padding:5px;
+	border-radius:5px;
+	box-shadow: 0px 0px 10px rgba(200,255,200,0.7);
+}
+
+.spinner {
+	width:16px;
+	height:16px;
+	display:inline-block;
+	background-image:url(../media/ajax-loader.gif);
+}
+
+.mem_current_line {
+	background-color:#0F6;
 }

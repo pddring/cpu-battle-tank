@@ -33,7 +33,24 @@
     <div data-role="panel" id="objectives" data-display="overlay" data-position="right">
     <h1>Objectives</h1>
     </div>
-    
+    <div data-role="panel" id="help" data-display="overlay" data-position="right">
+    	<h1>Help</h1>
+        <p>Tanks are controlled with <a href="http://en.wikipedia.org/wiki/Little_man_computer">Little Man Computer</a> processors. These processors are programmed with a limited number of low level instructions.</p>
+        <h2>Instructions</h2>
+        <table><tr><th>Instruction</th><th>Memory value</th><th>Description</th></tr>
+        <tr><td>ADD</td><td>1xx</td><td class="ins_description">Add the value stored at memory address xx to the value in the accumulator register</td></tr>
+        <tr><td>SUB</td><td>2xx</td><td class="ins_description">Subtract the value stored at memory address xx from the value in the accumulator register</td></tr>
+        <tr><td>STA</td><td>3xx</td><td class="ins_description">Store the value from the accumulator register to the memory address xx</td></tr>
+        <tr><td>LDA</td><td>5xx</td><td class="ins_description">Load the value from the memory address xx into the accumulator register</td></tr>
+        <tr><td>BRA</td><td>6xx</td><td class="ins_description">Branch to xx (store xx in the program counter register so that the program will jump to xx on the next instruction cycle)</td></tr>
+        <tr><td>BRZ</td><td>7xx</td><td class="ins_description">Branch if the accumulator register stores the value zero, otherwise carry on as normal</td></tr>
+        <tr><td>BRP</td><td>8xx</td><td class="ins_description">Branch if the accumulator register stores zero or a positive number</td></tr>
+        <tr><td>INP</td><td>9x1</td><td class="ins_description">Read a value from the input device x and store it in the accumulator register</td></tr>
+        <tr><td>OUT</td><td>9x2</td><td class="ins_description">Send the contents of the accumulator register to the output device x</td></tr>
+        <tr><td>HLT</td><td>000</td><td class="ins_description">Halt / Stop the processor</td></tr>
+        <tr><td>DAT</td><td>xxx</td><td class="ins_description">Stores xxx in memory to be used as data</td></tr>
+        </table>
+    </div>
     <div data-role="panel" id="settings">
     	<h1>Settings</h1>
         <label for="show-name"><a href="#pop_show_name" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank names:</label>

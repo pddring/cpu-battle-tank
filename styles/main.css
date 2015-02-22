@@ -190,13 +190,17 @@
 
 
 #ram_contents {
-	display:inline-block;
 	width: 100px;
-	height: 400px;
+	height: 445px;
 	top:0px;
 	position:relative;
 	overflow-y:scroll;
 	background-color:#FF9;
+}
+
+#ram_contents_holder {
+	display:inline-block;
+	vertical-align:top;
 }
 
 #ram_editor {
@@ -249,4 +253,45 @@
 
 .mem_current_line {
 	background-color:#0F6;
+}
+
+#control_holder {
+	display: inline-block;
+	vertical-align:top;
+}
+
+.register {
+	border-style:solid;
+	border-color:#000;
+	border-width:thin;
+	background-color: #6FF;
+	font-size:smaller;
+	padding: 5px;
+}
+
+.register_value {
+	background-color: #FFF;
+	font-size:medium;
+	font-family:"Courier New", Courier, monospace;
+	border-radius: 5px;
+	padding: 3px;
+}
+
+#help {
+	z-index:10000;
+}
+
+.ins_description {
+	font-size:x-small;
+}
+
+#help table,th,td {
+	border: 1px solid black;
+	border-collapse:collapse;
+}
+
+#control_status {
+	display:block;
+	font-size: smaller;
+	max-width:200px;
 }

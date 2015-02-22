@@ -293,5 +293,15 @@
 #control_status {
 	display:block;
 	font-size: smaller;
-	max-width:200px;
+	max-width: 300px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #CCC;
+	
+}
+
+#fetch_execute_cycle {
+	transition: all 0.5s;
+	float:left;	
+	opacity: 0;
 }

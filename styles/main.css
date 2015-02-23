@@ -305,3 +305,13 @@
 	float:left;	
 	opacity: 0;
 }
+
+.memory_label {
+	background-color:#EEE;
+	background: linear-gradient(#CCC, #FFF); /* Standard syntax */
+	font-size:smaller;
+	font-style:italic;
+	font-weight:bold;
+	text-align:center;
+	border-radius:5px;
+}

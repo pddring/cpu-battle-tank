@@ -327,6 +327,7 @@
 	background: linear-gradient(45deg,#FFF, #FEE);
 	margin: 10px;
 	box-shadow: 5px 5px 5px #888888;
+	max-width:350px;
 }
 #process{
 	background: linear-gradient(45deg,#FFF, #EFE);
@@ -352,5 +353,11 @@ h2 {
 }
 
 .code_sample {
+	background-color:#FFF;
+}
+
+.device_table {
+	border-collapse:collapse;
+	font-size:smaller;
 	background-color:#FFF;
 }

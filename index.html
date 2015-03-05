@@ -24,7 +24,7 @@
     
 	<div role="main" class="ui-content battleground">
 	    <img src="media/logo small.png" class="logo"/>
-        <div class="controller"><img src="media/controller.png" /></div>
+        <div id="controller"></div>
     	<div id="grid"></div>
     	<div id="tanks"></div>
     </div>
@@ -53,6 +53,14 @@
     </div>
     <div data-role="panel" id="settings">
     	<h1>Settings</h1>
+        
+        <label for="controller_choice"><a href="#pop_controller_choice" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Controller:</label>
+        <select name="controller_choice" class="ctl_setting" id="setting_controller" data-role="slider" data-mini="true">	
+            <option value="manual">Manual</option>
+            <option value="cpu">CPU</option>
+        </select>
+        <div data-role="popup" data-history="false" id="pop_controller_choice">Choose how your tank should be controlled: manually or by a Little Man Computer CPU</div>
+        
         <label for="show-name"><a href="#pop_show_name" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank names:</label>
         <select name="show-name" class="ctl_setting" id="setting_tank_show_name" data-role="slider" data-mini="true">	
             <option value="hide">Hide</option>
@@ -60,14 +68,14 @@
         </select>
         <div data-role="popup" data-history="false" id="pop_show_name">Show or hide the name of each tank on the battle grid</div>
         
-        <label for="show-name"><a href="#pop_show_fuel" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Fuel details:</label>
+        <label for="show-fuel"><a href="#pop_show_fuel" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Fuel details:</label>
         <select name="show-fuel" class="ctl_setting" id="setting_tank_show_fuel" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
         </select>
         <div data-role="popup" data-history="false" id="pop_show_fuel">Show or hide the amount of fuel underneath each tank on the battle grid</div>
         
-        <label for="show-name"><a href="#pop_show_ammo" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Ammo details:</label>
+        <label for="show-ammo"><a href="#pop_show_ammo" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Ammo details:</label>
         <select name="show-ammo" class="ctl_setting" id="setting_tank_show_ammo" data-role="slider" data-mini="true">
             <option value="hide">Hide</option>
             <option value="show">Show</option>
@@ -95,34 +103,6 @@
 <script> 
 var bt = new BattleTank();
 
-var onControllerClick = function(e) {
-	function inBox(x, y, left, top, width, height) {
-		return((x > left) && (x < left + width) && (y > top) && (y < top + height))? true: false;
-	}
-	var x = e.offsetX;
-	var y = e.offsetY;
-	var t1 = bt.currentTank;
-	// move tank
-	if(inBox(x, y, 70, 17, 64, 64))  
-		t1.addCommand(t1.CMD_MOVE_FORWARDS);
-	if(inBox(x, y, 70, 112, 64, 64))  
-		t1.addCommand(t1.CMD_MOVE_BACKWARDS);
-	if(inBox(x, y, 120, 64, 64, 64))  
-		t1.addCommand(t1.CMD_TURN_CLOCKWISE);
-	if(inBox(x, y, 20, 64, 64, 64))  
-		t1.addCommand(t1.CMD_TURN_ANTICLOCKWISE);
-		
-	// aim tank
-	if(inBox(x, y, 233, 37, 64, 64))  
-		t1.addCommand(t1.CMD_AIM_ANTICLOCKWISE);
-	if(inBox(x, y, 310, 37, 64, 64))  
-		t1.addCommand(t1.CMD_AIM_CLOCKWISE);
-	if(inBox(x, y, 274, 86, 64, 64))
-		t1.addCommand(t1.CMD_FIRE);
-	
-}
-
-
 
 $(function(){
 	
@@ -142,8 +122,7 @@ $(function(){
 		]});
 	bt.grid.loadLevel(l1);
 	
-	
-	$(".controller").click(onControllerClick);
+
 	
 	// set default settings values
 	$('#setting_tank_show_name').val(bt.settings.showTankNames?"show":"hide");
@@ -151,13 +130,16 @@ $(function(){
 	$('#setting_tank_show_ammo').val(bt.settings.showAmmoDetails?"show":"hide");
 	$('#setting_tank_show_commands').val(bt.settings.showCommandQueue?"show":"hide");
 	$('#setting_grid_show_borders').val(bt.settings.showGrid?"show":"hide");
+	$('#setting_controller').val(bt.settings.controller);
+	
 	$('.ctl_setting').slider('refresh');
 	bt.onSettingChange();
 	
 	// add settings change callback
 	$('.ctl_setting').on("change", function(event, ui) {
 		var id = event.target.id;
-		var val=$("#" + id).val() == "show"?true:false;
+		var rawVal = $("#" + id).val();
+		var val = rawVal == "show"?true:false;
 		switch(id) {
 			case 'setting_tank_show_name': 
 				bt.settings.showTankNames = val;
@@ -173,6 +155,10 @@ $(function(){
 				break;
 			case 'setting_grid_show_borders':
 				bt.settings.showGrid = val;
+				break;
+			case 'setting_controller':
+				bt.settings.controller = rawVal;
+				break;
 		}
 		bt.onSettingChange(id);
 	});

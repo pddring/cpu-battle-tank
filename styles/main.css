@@ -15,7 +15,7 @@
 	top:0px;
 }
 
-.controller {
+#controller {
 	right:0px;
 	top:300px;
 	position:fixed;
@@ -353,4 +353,55 @@ h2 {
 }
 #dlg {
 	background-color:rgba(255,255,255,0.5);
+}
+#cpu_controller {
+	background-image:url(../media/lmccontroller.png);
+	width: 399px;
+	height: 193px;
+	text-align:right;
+}
+
+.tank_quote {
+	position:absolute;
+	left:0px;
+	bottom:80px;
+	background-color:#FFF;
+	border-radius: 5px;
+	padding:10px;
+}
+
+.tank_quote:after {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 15px 15px 0;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	bottom: -15px;
+	left: 12px;
+}
+
+.tank_code {
+	background-color:#FF9;
+	padding:5px;
+	border-radius: 5px;
+}
+.tank_pc {
+	background-color:#6FF;
+	padding:5px;
+	border-radius: 5px;
+}
+.tank_ac {
+	background-color:#9F0;
+	padding:5px;
+	border-radius: 5px;
+}
+.tank_explain {
+	font-size:smaller;
+}
+.tank_dis {
+	font-family:"Courier New", Courier, monospace;
+	background-color:#EEE;
 }

@@ -61,6 +61,11 @@
         </select>
         <div data-role="popup" data-history="false" id="pop_controller_choice">Choose how your tank should be controlled: manually or by a Little Man Computer CPU</div>
         
+        
+        <label for="run_speed"><a href="#pop_run_speed" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Run speed:</label>
+        <input type="range" name="run_speed" class="ctl_setting" id="setting_run_speed" data-mini="true" value="5" min="1" max="200"/>	
+        <div data-role="popup" data-history="false" id="pop_run_speed">Set how fast you want the CPU to run to control each tank.</div>
+        
         <label for="show-name"><a href="#pop_show_name" data-rel="popup" data-role="button" data-inline="true" data-iconpos="notext" data-icon="info">Help</a>Tank names:</label>
         <select name="show-name" class="ctl_setting" id="setting_tank_show_name" data-role="slider" data-mini="true">	
             <option value="hide">Hide</option>
@@ -108,7 +113,7 @@ $(function(){
 	
 	bt.grid.init();
 		
-	var l1 = bt.addLevel({tank: {x:1, y:1, name: "You", color:"rgba(0, 255,0,0.8)"}, title: "Level 1", description:"Follow the checkpoints and destroy the tank", 
+	var l1 = bt.addLevel({tank: {x:1, y:1, name: "You", color:"rgba(0, 255,0,0.8)", code:"ICAgICAgICAgICAgQlJBIFN0YXJ0DQovLyBEYXRhDQpGb3J3YXJkcyAgICBEQVQgMA0KV2VzdCAgICAgICAgREFUIDYNClNvdXRoICAgICAgIERBVCA0DQpFYXN0ICAgICAgICBEQVQgMg0KTm9ydGhXZXN0ICAgREFUIDcNCkZpcmUgICAgICAgIERBVCAwDQoNCi8vIEluc3RydWN0aW9ucw0KU3RhcnQJICAgIExEQSBGb3J3YXJkcw0KICAgICAgICAJT1VUIDENCiAgICAgICAgCUxEQSBXZXN0DQogICAgICAgIAlPVVQgMg0KICAgICAgICAJTERBIEZvcndhcmRzDQogICAgICAgIAlPVVQgMQ0KICAgICAgICAJTERBIFNvdXRoDQogICAgICAgIAlPVVQgMg0KICAgICAgICAJTERBIEZvcndhcmRzDQogICAgICAgIAlPVVQgMQ0KICAgICAgICAJT1VUIDENCiAgICAgICAgCU9VVCAxDQogICAgICAgIAlPVVQgMQ0KICAgICAgICAJTERBIEVhc3QNCiAgICAgICAgCU9VVCAyDQogICAgICAgIAlMREEgRm9yd2FyZHMNCiAgICAgICAgCU9VVCAxDQogICAgICAgIAlPVVQgMQ0KICAgICAgICAJT1VUIDENCiAgICAgICAgCUxEQSBXZXN0DQogICAgICAgIAlPVVQgMg0KICAgICAgICAJTERBIEZvcndhcmRzDQogICAgICAgIAlPVVQgMQ0KICAgICAgICAJTERBIE5vcnRoV2VzdA0KICAgICAgICAJT1VUIDMNCiAgICAgICAgCUxEQSBGaXJlDQogICAgICAgIAlPVVQgNA0KICAgICAgICAgICAgSExUDQo="}, title: "Level 1", description:"Follow the checkpoints and destroy the tank",
 		tasks:[
 		[0, 0, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
 		[0, 4, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
@@ -118,7 +123,7 @@ $(function(){
 		[5, 3, bt.ITEM_TYPE_WATER, bt.ACTION_STATIC],
 		[1, 3, bt.ITEM_TYPE_MINE, bt.ACTION_DESTROY],
 		[5, 5, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY],
-		[5, 4, bt.ITEM_TYPE_TANK, bt.ACTION_DESTROY, {name:"German", color:"rgba(255,0,0,0,0.8)", commands:""}]
+		[5, 4, bt.ITEM_TYPE_TANK, bt.ACTION_DESTROY, {name:"German", color:"rgba(255,0,0,0,0.8)", commands:"", code:""}]
 		]});
 	bt.grid.loadLevel(l1);
 	
@@ -131,6 +136,7 @@ $(function(){
 	$('#setting_tank_show_commands').val(bt.settings.showCommandQueue?"show":"hide");
 	$('#setting_grid_show_borders').val(bt.settings.showGrid?"show":"hide");
 	$('#setting_controller').val(bt.settings.controller);
+	$('#setting_run_speed').val(bt.settings.runSpeed);
 	
 	$('.ctl_setting').slider('refresh');
 	bt.onSettingChange();
@@ -158,6 +164,9 @@ $(function(){
 				break;
 			case 'setting_controller':
 				bt.settings.controller = rawVal;
+				break;
+			case 'setting_run_speed':
+				bt.settings.runSpeed = rawVal;
 				break;
 		}
 		bt.onSettingChange(id);

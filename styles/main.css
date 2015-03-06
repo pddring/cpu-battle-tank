@@ -363,6 +363,7 @@ h2 {
 
 .tank_quote {
 	position:absolute;
+	display:none;
 	left:0px;
 	bottom:80px;
 	background-color:#FFF;

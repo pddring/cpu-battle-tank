@@ -7,7 +7,7 @@ bt.addLevel({
 			code:""
 		}, 
 	title: "Practice level", 
-	description: "Move the tank to collect the checkpoints",
+	description: "Use the manual control pad to move the tank to collect the checkpoints.",
 		
 	tasks:[
 		[5,1, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],

@@ -166,15 +166,16 @@
 .progress_holder {
 	width:100%;
 	height:5px;
-	background-color:#F00;
+	background:linear-gradient(to right, #F00,#0A0);
 	display:block;
 }
 .progress_bar {
 	width:50%;
 	height:5px;
-	background-color:#0C0;
+	background:linear-gradient(to right, #0C0,#0F0);
 	display:block;
 	transition: all 1.0s;
+	border-radius:5px;
 }
 
 .item_description {
@@ -405,4 +406,10 @@ h2 {
 .tank_dis {
 	font-family:"Courier New", Courier, monospace;
 	background-color:#EEE;
+}
+.white {
+	padding:10px;
+	border-radius:5px;
+	margin:10px;
+	background-color:#FFF;
 }

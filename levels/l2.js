@@ -3,11 +3,15 @@ bt.addLevel({
 	tank: {
 		x:5, y:5, 
 		name: "You", color:"rgba(0, 255,0,0.8)", 
-		code:"Ly8gTW92ZSBmb3J3YXJkcw0KCUxEQSBGb3J3YXJkcyAgICAvLyBsb2FkIDAgaW50byBhY2N1bXVsYXRvcg0KCU9VVCAxICAgICAgICAgICAvLyBNb3ZlIGZvcndhcmRzDQoJT1VUIDENCglITFQgICAgICAgICAgICAgLy8gc3RvcCB0aGUgQ1BVDQoNCkZvcndhcmRzICAgIERBVCAwICAgICAgICAgICAvLyBzdG9yZSB0aGUgdmFsdWUgMA0K"
+		code:""
 		}, 
 	title: "Level 2", 
-	description:"Complete the Little Man Computer tank code to move as far as the checkpoint",
+	description:"Program the Little Man Computer CPU to destroy the land mines",
 	tasks:[
+		[7, 5, bt.ITEM_TYPE_MINE, bt.ACTION_DESTROY],
+		[3, 5, bt.ITEM_TYPE_MINE, bt.ACTION_DESTROY],
+		[5, 7, bt.ITEM_TYPE_MINE, bt.ACTION_DESTROY],
+		[5, 3, bt.ITEM_TYPE_MINE, bt.ACTION_DESTROY],
 		[5, 1, bt.ITEM_TYPE_CHECKPOINT, bt.ACTION_COLLECT],
 	]
 });

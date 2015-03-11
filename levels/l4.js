@@ -15,7 +15,7 @@ bt.addLevel({
 		[4, 3, bt.ITEM_TYPE_WATER, bt.ACTION_STATIC],
 		[5, 3, bt.ITEM_TYPE_WATER, bt.ACTION_STATIC],
 		[1, 3, bt.ITEM_TYPE_MINE, bt.ACTION_DESTROY],
-		[3, 4, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY],
+		[5, 5, bt.ITEM_TYPE_STRAW, bt.ACTION_DESTROY],
 		[5, 4, bt.ITEM_TYPE_TANK, bt.ACTION_DESTROY, {name:"Enemy", color:"rgba(255,0,0,0,0.8)", commands:"", code:""}]
 	]
 });

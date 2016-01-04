@@ -353,8 +353,12 @@ h2 {
 	font-size:smaller;
 	background-color:#FFF;
 }
-#dlg {
+#dlg:hover {
 	background-color:rgba(255,255,255,0.5);
+}
+#dlg{
+	background-color:rgba(255,255,255,0.9);
+	transition: all 1s;
 }
 #cpu_controller {
 	background-image:url(../media/lmccontroller.png);

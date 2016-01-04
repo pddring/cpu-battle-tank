@@ -354,10 +354,10 @@ h2 {
 	background-color:#FFF;
 }
 #dlg:hover {
-	background-color:rgba(255,255,255,0.5);
+	background-color:rgba(255,255,255,0.9);
 }
 #dlg{
-	background-color:rgba(255,255,255,0.9);
+	background-color:rgba(255,255,255,0.5);
 	transition: all 1s;
 }
 #cpu_controller {
